@@ -1,9 +1,9 @@
 {
-  "name": "LearnKoa2",
+  "name": "Koa2Demo",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "./node_modules/.bin/nodemon bin/run",
+    "start": "./node_modules/.bin/nodemon bin/run .bin/supervisor app.js",
     "koa": "./node_modules/.bin/runkoa bin/www",
     "pm2": "pm2 start bin/run ",
     "test": "echo \"Error: no test specified\" && exit 1"
