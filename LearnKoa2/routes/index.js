@@ -1,11 +1,19 @@
 var router = require('koa-router')();
 
-router.get('/', function foo(ctx, next) {
-  ctx.state = {
-    title: 'koa2 title'
-  };
-  return ctx.render('index', {
-  });
+
+router.post('/', (ctx, next) => {
+    console.log(`ctx.request.body = ${JSON.stringify(ctx.request.body)}`);
+    console.log(`ctx.request.params = ${ctx.request.params}`);
+    ctx.state = {
+        title: 'koa2 title'
+    };
+    ctx.response.body = "post request succeed"
+});
+
+router.get('/', function(ctx, next) {
+    console.log(ctx.params);
+    console.log(ctx.request.params);
+    ctx.body = 'get request succeed';
 });
 
 module.exports = router;

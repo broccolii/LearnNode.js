@@ -17,7 +17,11 @@ const users = require('./routes/users');
 app.use(convert(bodyparser));
 app.use(convert(json()));
 app.use(convert(logger()));
+
 app.use(require('koa-static')(__dirname + '/public'));
+
+
+
 
 app.use(views(__dirname + '/views', {
   extension: 'jade'
@@ -32,13 +36,13 @@ app.use((ctx, next) => {
     });
 });
 
-router.use('/', index.routes(), index.allowedMethods());
-router.use('/users', users.routes(), users.allowedMethods());
+router.use('/index', index.routes(), index.allowedMethods());
+router.use('/users/:id', users.routes(), users.allowedMethods());
 
 app.use(router.routes(), router.allowedMethods());
 // response
 
-app.on('error', function(err, ctx){
+app.on('error', (err, ctx) => {
   console.log(err)
   logger.error('server error', err, ctx);
 });
